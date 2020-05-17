@@ -9,7 +9,8 @@
                 <h5 class="card-title">@card.Destination</h5>
                 <p class="card-text">$@card.Price</p>
                 <p class="card-text">@card.Description</p>
-                <a href="#" class="btn btn-primary">Book</a>
+                <button class="btn btn-primary" @onclick="(() => BookTrip(card.TravelCardId))">Book</button>
+                <button class="btn btn-primary" @onclick="(() => Return(card.TravelCardId))">Return</button>
             </div>
         </div>
     }
@@ -22,5 +23,16 @@
     {
         travelCards.Add(new TravelCard { TravelCardId = 1, Destination = "Hawaii", Description = "Hawaii is the world's largest island chain, and it's the only U.S. state completely made up of islands. But only 7 of its 132 islands are inhabited: Hawaii (also known as the Big Island), Maui, Molokai, Lanai, Oahu, Kauai, and Niihau. The Hawaiian Islands are volcanic islands.", NumberOfDays = 7, Price = 1899 });
         travelCards.Add(new TravelCard { TravelCardId = 2, Destination = "Paris", Description = "Paris is the capital and most populous city of France, with an area of 105 square kilometres (41 square miles) and an official estimated population of 2,140,526.", NumberOfDays = 7, Price = 2000 });
+    }
+
+    public void BookTrip(int id)
+    {
+        travelCards = travelCards.Where(x => x.TravelCardId == id).ToList();
+    }
+
+    public void Return(int id)
+    {
+        travelCards.Clear();
+        OnInitialized();
     }
 }
