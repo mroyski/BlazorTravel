@@ -1,6 +1,21 @@
-﻿@page "/travel/details/{TravelCardId}"
+﻿@page "/travel/{Id:int}"
 
 <h1>hi</h1>
 
+<p>@Location.Destination</p>
+
 @code {
+    public IList<TravelCard> travelCards = new List<TravelCard>();
+    public TravelCard Location { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        travelCards.Add(new TravelCard { TravelCardId = 1, Destination = "Hawaii", Description = "Hawaii is the world's largest island chain, and it's the only U.S. state completely made up of islands. But only 7 of its 132 islands are inhabited: Hawaii (also known as the Big Island), Maui, Molokai, Lanai, Oahu, Kauai, and Niihau. The Hawaiian Islands are volcanic islands.", NumberOfDays = 7, Price = 1899 });
+        travelCards.Add(new TravelCard { TravelCardId = 2, Destination = "Paris", Description = "Paris is the capital and most populous city of France, with an area of 105 square kilometres (41 square miles) and an official estimated population of 2,140,526.", NumberOfDays = 7, Price = 2000 });
+        Location = travelCards.FirstOrDefault(x => x.TravelCardId == Id);
+    }
+
 }
