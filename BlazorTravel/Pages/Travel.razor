@@ -11,7 +11,7 @@
                 <p class="card-text">@card.Description</p>
                 <button class="btn btn-primary" @onclick="(() => BookTrip(card.TravelCardId))">Book</button>
                 <button class="btn btn-primary" @onclick="(() => Return(card.TravelCardId))">Return</button>
-                <a href="/travel/@card.TravelCardId">DETAILS</a>
+                <a class="btn btn-success" href="/travel/@card.TravelCardId">Details</a>
             </div>
         </div>
     }
